@@ -3,60 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Điều bất ngờ dành cho em... ❤️</title>
+    <title>Happy 100 Days Together ❤️</title>
     <style>
-        * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: linear-gradient(135deg, #ffeef8 0%, #ffc0cb 100%); font-family: 'Segoe UI', Roboto, sans-serif; display: flex; justify-content: center; align-items: center; color: #fff; }
-        #countdown { font-size: 160px; font-weight: 800; color: #ff4d6d; text-shadow: 0 10px 25px rgba(255, 77, 109, 0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        #love-screen { display: none; text-align: center; padding: 20px; max-width: 90%; }
-        .heart { font-size: 160px; display: inline-block; color: #ff4d6d; animation: beat 0.8s infinite alternate cubic-bezier(0.25, 0.8, 0.25, 1); filter: drop-shadow(0 12px 20px rgba(255, 77, 109, 0.4)); }
-        h1 { font-size: 38px; margin-top: 25px; margin-bottom: 15px; color: #ff4d6d; text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); animation: fadeInUp 1.2s ease-in-out forwards; opacity: 0; }
-        p { font-size: 22px; color: #6c757d; font-weight: 600; line-height: 1.5; animation: fadeInUp 1.8s ease-in-out forwards; opacity: 0; }
-        @keyframes beat { to { transform: scale(1.18); } }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Phông nền hồng ngọt ngào chuyển màu mượt mà */
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 50%, #ffe4e1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4a4a4a;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(8px);
+            padding: 35px 30px;
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(255, 182, 193, 0.6);
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            border: 2px solid rgba(255, 192, 203, 0.5);
+        }
+
+        h1 {
+            color: #ff69b4;
+            margin-bottom: 8px;
+            font-size: 2.2em;
+            text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
+        }
+
+        p.subtitle {
+            font-size: 1.05em;
+            color: #8b5a70;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .counter-box {
+            background: #fff0f5;
+            border: 2px dashed #ffb6c1;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 10px rgba(255, 192, 203, 0.3);
+        }
+
+        .counter-title {
+            color: #8b5a70;
+            font-size: 0.95em;
+        }
+
+        .days {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #ff1493;
+            margin: 5px 0;
+            text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.15);
+        }
+
+        .message-box {
+            text-align: left;
+            line-height: 1.7;
+            color: #5a404c;
+            background: #ffffff;
+            padding: 22px;
+            border-radius: 16px;
+            border-left: 5px solid #ff69b4;
+            margin-bottom: 25px;
+            font-size: 0.95em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .promise-card {
+            background: linear-gradient(120deg, #ff8da1 0%, #ffb6c1 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-size: 0.95em;
+            box-shadow: 0 5px 15px rgba(255, 141, 161, 0.4);
+            line-height: 1.4;
+        }
+
+        .heart-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.05em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.35);
+        }
+
+        .heart-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.45);
+        }
+
+        .heart-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Hiệu ứng bong bóng trái tim rơi */
+        .heart-bg {
+            position: fixed;
+            top: -10vh;
+            font-size: 1.5rem;
+            color: #ff69b4;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(115vh) rotate(360deg);
+                opacity: 0.2;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div id="countdown">3</div>
+    <div class="container">
+        <h1>Happy 100 Days! 💕</h1>
+        <p class="subtitle">100 ngày yêu xa - Hàng ngàn nỗi nhớ</p>
 
-    <div id="love-screen">
-        <div class="heart">❤️</div>
-        <h1>CÔNG CHÚA ƠI</h1>
-        <p>LÀM VK CỦA CK NHÉ<br>CK YÊU VK NHIỀU LẮM</p>
+        <div class="counter-box">
+            <div class="counter-title">Chúng mình đã bên nhau</div>
+            <div class="days" id="day-counter">100</div>
+            <div class="counter-title">ngày trôi qua ngọt ngào 🌸</div>
+        </div>
+
+        <div class="message-box">
+            <p><strong>Gửi bae ,</strong></p><br>
+            <p>Cảm ơn em đã luôn kiên nhẫn, thấu hiểu và cùng anh đi qua 100 ngày yêu xa đầu tiên. Khoảng cách địa lý có thể ngăn anh ôm em mỗi ngày, nhưng chưa bao giờ ngăn được tim anh hướng về em.</p><br>
+            <p>Yêu xa có chút thiệt thòi cho em, nhưng hãy luôn tin tưởng ở anh nhé!</p>
+        </div>
+
+        <div class="promise-card">
+            🎁 <strong>Tấm vé hẹn hò:</strong> Cuối năm nay gặp nhau, anh sẽ bù đắp cho em một buổi hẹn hò thật trọn vẹn và ấm áp!
+        </div>
+
+        <button class="heart-btn" onclick="sendLove()">Bấm vào đây để nhận yêu thương 💖</button>
     </div>
 
     <script>
-        let count = 3;
-        const countDiv = document.getElementById('countdown');
-        const loveScreen = document.getElementById('love-screen');
+        // Tạo hiệu ứng tim rơi liên tục
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            
+            // Random biểu tượng tim
+            const hearts = ['🌸', '💖', '💕', '💗', '❤️', '✨'];
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.fontSize = Math.random() * 18 + 12 + 'px';
+            document.body.appendChild(heart);
 
-        const timer = setInterval(() => {
-            count--;
-            if (count > 0) {
-                countDiv.style.transform = "scale(0.3)";
-                setTimeout(() => {
-                    countDiv.innerText = count;
-                    countDiv.style.transform = "scale(1)";
-                }, 150);
-            } else if (count === 0) {
-                countDiv.style.transform = "scale(0.3)";
-                setTimeout(() => {
-                    countDiv.innerHTML = '<div class="heart">❤️</div>';
-                    countDiv.style.transform = "scale(1)";
-                }, 150);
-            } else {
-                clearInterval(timer);
-                countDiv.style.opacity = '0';
-                setTimeout(() => {
-                    countDiv.style.display = 'none';
-                    loveScreen.style.display = 'block';
-                }, 200);
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHeart, 350);
+
+        // Nút bấm phát nổ trái tim
+        function sendLove() {
+            for(let i = 0; i < 35; i++) {
+                setTimeout(createHeart, i * 40);
             }
-        }, 1300);
+            alert("Anh yêu em rất nhiều! Chờ ngày gặp em vào cuối năm nhé 💕");
+        }
     </script>
 </body>
 </html>
